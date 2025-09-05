@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thanks — we’re on it</title>
+  <meta name="description" content="South Surrey & White Rock buyer lead funnel — Macdonald Realty Ltd." />
+  <link rel="icon" href="/favicon.ico" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Optional: set your form endpoint here -->
+  <script>
+    window.FORM_ENDPOINT = window.FORM_ENDPOINT || "https://httpbin.org/post";
+  </script>
+  <style>.blurball{filter:blur(80px);opacity:.6}</style>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-900">
+  <div class="bg-[#00356b] text-white">
+    <div class="mx-auto max-w-6xl px-4 py-2 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="h-9 w-9 rounded-full bg-white text-[#00356b] grid place-items-center font-black">MR</div>
+        <div class="font-semibold tracking-wide">Macdonald Realty Ltd.</div>
+      </div>
+      <a class="underline text-sm" href="tel:+16045551234">(604) 555‑1234</a>
+    </div>
+  </div>
+
+  <section class="mx-auto max-w-3xl px-4 py-24 text-center">
+    <div class="text-5xl">🎉</div>
+    <h1 class="font-serif text-3xl mt-3">Thanks! Your list is on the way.</h1>
+    <p class="mt-3 text-slate-600">We’ll send matches for your chosen area shortly. Want to talk now? Call <a class="underline" href="tel:+16045551234">(604) 555‑1234</a>.</p>
+    <a href="index.html" class="inline-flex mt-8 rounded-xl bg-white border border-slate-300 px-5 py-3 font-medium hover:bg-slate-50">Start a new search</a>
+  </section>
+  <script>
+    const lead = sessionStorage.getItem('lead_payload');
+    console.log('Lead payload:', lead && JSON.parse(lead));
+  </script>
+
+  <footer class="bg-[#00356b] text-slate-100 mt-16">
+    <div class="mx-auto max-w-6xl px-4 py-8 flex items-center justify-between text-sm">
+      <div>© <span id="year"></span> Macdonald Realty Ltd.</div>
+      <a href="index.html" class="underline">Start over</a>
+    </div>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear()</script>
+</body>
+</html>

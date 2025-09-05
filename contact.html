@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your contact details</title>
+  <meta name="description" content="South Surrey & White Rock buyer lead funnel — Macdonald Realty Ltd." />
+  <link rel="icon" href="/favicon.ico" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Optional: set your form endpoint here -->
+  <script>
+    window.FORM_ENDPOINT = window.FORM_ENDPOINT || "https://httpbin.org/post";
+  </script>
+  <style>.blurball{filter:blur(80px);opacity:.6}</style>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-900">
+  <div class="bg-[#00356b] text-white">
+    <div class="mx-auto max-w-6xl px-4 py-2 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="h-9 w-9 rounded-full bg-white text-[#00356b] grid place-items-center font-black">MR</div>
+        <div class="font-semibold tracking-wide">Macdonald Realty Ltd.</div>
+      </div>
+      <a class="underline text-sm" href="tel:+16045551234">(604) 555‑1234</a>
+    </div>
+  </div>
+
+  <section class="mx-auto max-w-3xl px-4 py-12">
+    <a href="buyer.html" class="text-sm underline">← Back</a>
+    <h1 class="font-serif text-3xl mt-2">Where can we send your matches?</h1>
+    <p class="mt-2 text-slate-600">We’ll send a curated list and set up alerts for new listings and price drops.</p>
+
+    <form id="contact" class="mt-8 rounded-3xl border border-slate-200 bg-white p-6 grid gap-4">
+      <div class="text-sm text-slate-600">
+        Area: <span id="areaLabel" class="font-medium"></span>
+        <span id="subareaWrap" class="ml-2 hidden">• <span id="subareaLabel" class="font-medium"></span></span>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div>
+          <label class="text-sm">First name</label>
+          <input required name="first" class="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-[#00356b]/30" />
+        </div>
+        <div>
+          <label class="text-sm">Last name</label>
+          <input name="last" class="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-[#00356b]/30" />
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div>
+          <label class="text-sm">Email</label>
+          <input required type="email" name="email" class="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-[#00356b]/30" />
+        </div>
+        <div>
+          <label class="text-sm">Phone</label>
+          <input name="phone" class="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-[#00356b]/30" />
+        </div>
+      </div>
+
+      <label class="text-sm flex items-start gap-2">
+        <input type="checkbox" required name="consent" class="mt-1" />
+        <span>I consent to be contacted by Macdonald Realty Ltd. <a class="underline" href="#">Privacy Policy</a>.</span>
+      </label>
+
+      <div class="flex items-center justify-end">
+        <button class="rounded-xl bg-[#00356b] text-white px-5 py-3 font-medium shadow hover:opacity-95">Get my list</button>
+      </div>
+    </form>
+  </section>
+
+  <script>
+    const area = sessionStorage.getItem('selected_area');
+    const subarea = sessionStorage.getItem('selected_subarea');
+    const prefs = sessionStorage.getItem('prefs');
+    if (!area || !prefs) location.href = 'index.html';
+    document.getElementById('areaLabel').textContent = area;
+    if (subarea) {{
+      document.getElementById('subareaLabel').textContent = subarea;
+      document.getElementById('subareaWrap').classList.remove('hidden');
+    }}
+
+    document.getElementById('contact').addEventListener('submit', async (e) => {{
+      e.preventDefault();
+      const contact = Object.fromEntries(new FormData(e.target).entries());
+      const payload = {{
+        area,
+        subarea: subarea || '',
+        ...JSON.parse(prefs),
+        ...contact,
+        page: 'South Surrey & White Rock Multi-Step Funnel'
+      }};
+      try {{
+        await fetch(window.FORM_ENDPOINT, {{
+          method: 'POST',
+          headers: {{ 'Content-Type': 'application/json' }},
+          body: JSON.stringify(payload),
+        }});
+      }} catch (e) {{
+        console.warn('POST failed; proceeding to thanks.');
+      }}
+      sessionStorage.setItem('lead_payload', JSON.stringify(payload));
+      location.href = 'thanks.html';
+    }});
+  </script>
+
+  <footer class="bg-[#00356b] text-slate-100 mt-16">
+    <div class="mx-auto max-w-6xl px-4 py-8 flex items-center justify-between text-sm">
+      <div>© <span id="year"></span> Macdonald Realty Ltd.</div>
+      <a href="index.html" class="underline">Start over</a>
+    </div>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear()</script>
+</body>
+</html>

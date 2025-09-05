@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tell us your preferences</title>
+  <meta name="description" content="South Surrey & White Rock buyer lead funnel — Macdonald Realty Ltd." />
+  <link rel="icon" href="/favicon.ico" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Optional: set your form endpoint here -->
+  <script>
+    window.FORM_ENDPOINT = window.FORM_ENDPOINT || "https://httpbin.org/post";
+  </script>
+  <style>.blurball{filter:blur(80px);opacity:.6}</style>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-900">
+  <div class="bg-[#00356b] text-white">
+    <div class="mx-auto max-w-6xl px-4 py-2 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="h-9 w-9 rounded-full bg-white text-[#00356b] grid place-items-center font-black">MR</div>
+        <div class="font-semibold tracking-wide">Macdonald Realty Ltd.</div>
+      </div>
+      <a class="underline text-sm" href="tel:+16045551234">(604) 555‑1234</a>
+    </div>
+  </div>
+
+  <section class="mx-auto max-w-5xl px-4 py-12">
+    <a href="index.html" class="text-sm underline">← Change area</a>
+    <h1 class="font-serif text-3xl mt-2">Tell us what you’re after</h1>
+    <p class="mt-2 text-slate-600">We’ll use this to build your personalized list and alerts.</p>
+
+    <form id="prefs" class="mt-8 rounded-3xl border border-slate-200 bg-white p-6 grid gap-4">
+      <div class="text-sm text-slate-600">
+        Area: <span id="areaLabel" class="font-medium"></span>
+        <span id="subareaWrap" class="ml-2 hidden">• <span id="subareaLabel" class="font-medium"></span></span>
+      </div>
+      <div class="grid md:grid-cols-3 gap-4">
+        <div>
+          <label class="text-sm">Price range</label>
+          <select name="price" class="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2">
+            <option value="">Select</option>
+            <option>$600k-$800k</option>
+            <option>$800k-$1.0M</option>
+            <option>$1.0M-$1.5M</option>
+            <option>$1.5M-$2.0M</option>
+            <option>$2.0M+</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-sm">Beds</label>
+          <select name="beds" class="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2">
+            <option value="">Any</option>
+            <option>2+</option>
+            <option>3+</option>
+            <option>4+</option>
+            <option>5+</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-sm">Timeframe</label>
+          <select name="timeframe" class="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2">
+            <option value="">Select</option>
+            <option>0-3 months</option>
+            <option>3-6 months</option>
+            <option>6-12 months</option>
+            <option>Just browsing</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label class="text-sm">Are you pre‑approved?</label>
+        <div class="mt-1 flex flex-wrap gap-4 text-sm">
+          <label class="inline-flex items-center gap-2"><input type="radio" name="preapproved" value="Yes"/> <span>Yes</span></label>
+          <label class="inline-flex items-center gap-2"><input type="radio" name="preapproved" value="No"/> <span>No</span></label>
+          <label class="inline-flex items-center gap-2"><input type="radio" name="preapproved" value="Not sure"/> <span>Not sure</span></label>
+        </div>
+      </div>
+
+      <div>
+        <label class="text-sm">Anything else to add?</label>
+        <textarea name="notes" rows="3" class="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2" placeholder="Schools, yard, suite, parking, etc."></textarea>
+      </div>
+
+      <div class="flex items-center justify-end">
+        <button class="rounded-xl bg-[#00356b] text-white px-5 py-3 font-medium shadow hover:opacity-95">Continue</button>
+      </div>
+    </form>
+  </section>
+
+  <script>
+    const area = sessionStorage.getItem('selected_area');
+    const subarea = sessionStorage.getItem('selected_subarea');
+    if (!area) location.href = 'index.html';
+    document.getElementById('areaLabel').textContent = area;
+    if (subarea) {{
+      document.getElementById('subareaLabel').textContent = subarea;
+      document.getElementById('subareaWrap').classList.remove('hidden');
+    }}
+
+    document.getElementById('prefs').addEventListener('submit', (e) => {{
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(e.target).entries());
+      sessionStorage.setItem('prefs', JSON.stringify(data));
+      location.href = 'contact.html';
+    }});
+  </script>
+
+  <footer class="bg-[#00356b] text-slate-100 mt-16">
+    <div class="mx-auto max-w-6xl px-4 py-8 flex items-center justify-between text-sm">
+      <div>© <span id="year"></span> Macdonald Realty Ltd.</div>
+      <a href="index.html" class="underline">Start over</a>
+    </div>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear()</script>
+</body>
+</html>
