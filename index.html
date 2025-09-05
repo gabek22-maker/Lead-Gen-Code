@@ -6,9 +6,255 @@
     <title>South Surrey Buyer Access • Macdonald Realty Ltd.</title>
     <meta name="description" content="Daily matches, price‑drop alerts, and private tours for South Surrey buyers. Powered by Macdonald Realty Ltd." />
     <link rel="icon" href="/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .blurball{filter: blur(80px); opacity:.6}
+    </style>
   </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+  <body class="min-h-screen bg-slate-50 text-slate-900">
+    <!-- Brand Bar -->
+    <div class="bg-[#00356b] text-white">
+      <div class="mx-auto max-w-6xl px-4 py-2 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="h-9 w-9 rounded-full bg-white text-[#00356b] grid place-items-center font-black">MR</div>
+          <div class="font-semibold tracking-wide">Macdonald Realty Ltd.</div>
+        </div>
+        <a class="underline text-sm" href="tel:+16045551234">(604) 555‑1234</a>
+      </div>
+    </div>
+
+    <!-- Hero -->
+    <section class="relative overflow-hidden">
+      <div class="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-[#00356b]/10 blurball"></div>
+      <div class="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-indigo-200/30 blurball"></div>
+      <div class="mx-auto max-w-6xl px-4 py-16 grid lg:grid-cols-12 gap-10 items-center relative">
+        <div class="lg:col-span-6">
+          <span class="inline-flex items-center gap-2 rounded-full bg-white border border-slate-200 px-3 py-1 text-xs">🏡 South Surrey · Buyer Access</span>
+          <h1 class="mt-4 font-serif text-4xl md:text-5xl leading-tight">
+            Your curated list of <span class="underline decoration-[#00356b] decoration-4 underline-offset-4">South Surrey</span> homes
+          </h1>
+          <p class="mt-4 text-slate-600 md:text-lg">
+            Daily matches, price‑drop alerts, and private tour options—tailored to your budget and must‑haves.
+          </p>
+          <div class="mt-6 grid grid-cols-3 gap-3">
+            <div class="rounded-2xl bg-white border border-slate-200 p-3 text-center text-sm">
+              <div class="text-xl">⚡</div><div class="mt-1 font-medium">Instant alerts</div>
+            </div>
+            <div class="rounded-2xl bg-white border border-slate-200 p-3 text-center text-sm">
+              <div class="text-xl">🧭</div><div class="mt-1 font-medium">Local guidance</div>
+            </div>
+            <div class="rounded-2xl bg-white border border-slate-200 p-3 text-center text-sm">
+              <div class="text-xl">🔒</div><div class="mt-1 font-medium">No spam</div>
+            </div>
+          </div>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="#form" class="rounded-2xl bg-[#00356b] text-white px-5 py-3 font-medium shadow hover:opacity-95">Build my list</a>
+            <a href="#areas" class="rounded-2xl bg-white border border-slate-300 px-5 py-3 font-medium hover:bg-slate-50">Neighbourhoods</a>
+          </div>
+        </div>
+        <div class="lg:col-span-6">
+          <div class="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur p-6 shadow-sm">
+            <div class="font-semibold">What you’ll get</div>
+            <ul class="mt-3 space-y-2 text-sm text-slate-700">
+              <li>• Daily matches with photos, prices, days on market</li>
+              <li>• Price‑drop & new‑listing alerts</li>
+              <li>• Optional same‑day private showings</li>
+            </ul>
+            <div class="mt-4 grid sm:grid-cols-3 gap-2 text-xs" id="areas">
+              <span class="rounded-full border border-slate-200 bg-white px-3 py-1">Morgan Creek</span>
+              <span class="rounded-full border border-slate-200 bg-white px-3 py-1">Ocean Park</span>
+              <span class="rounded-full border border-slate-200 bg-white px-3 py-1">Crescent Heights</span>
+              <span class="rounded-full border border-slate-200 bg-white px-3 py-1">Grandview</span>
+              <span class="rounded-full border border-slate-200 bg-white px-3 py-1">Elgin</span>
+              <span class="rounded-full border border-slate-200 bg-white px-3 py-1">Sunnyside</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Form -->
+    <section id="form" class="bg-white">
+      <div class="mx-auto max-w-5xl px-4 py-12">
+        <div class="rounded-3xl border border-slate-200 bg-slate-50 p-6 md:p-10">
+          <div class="grid lg:grid-cols-5 gap-8">
+            <div class="lg:col-span-2">
+              <h2 class="font-serif text-3xl">Tell us what you’re after</h2>
+              <p class="mt-3 text-slate-600">Answer a few quick questions to build your custom list and set up instant alerts.</p>
+              <div class="mt-6 grid gap-3 text-sm">
+                <div class="rounded-xl border border-slate-200 bg-white p-3">No obligation consultation</div>
+                <div class="rounded-xl border border-slate-200 bg-white p-3">Unsubscribe anytime</div>
+                <div class="rounded-xl border border-slate-200 bg-white p-3">Fast, local follow‑up</div>
+              </div>
+            </div>
+            <form id="leadForm" class="lg:col-span-3 rounded-2xl border border-slate-200 bg-white p-6">
+              <div id="thanks" class="hidden text-center">
+                <div class="text-3xl">🎉</div>
+                <div class="mt-2 font-semibold">Thanks! We’ll text/email your list shortly.</div>
+              </div>
+              <div id="fields" class="grid gap-4">
+                <div class="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="text-sm">First name</label>
+                    <input required name="first" class="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-[#00356b]/30" />
+                  </div>
+                  <div>
+                    <label class="text-sm">Last name</label>
+                    <input name="last" class="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-[#00356b]/30" />
+                  </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="text-sm">Email</label>
+                    <input required type="email" name="email" class="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-[#00356b]/30" />
+                  </div>
+                  <div>
+                    <label class="text-sm">Phone</label>
+                    <input name="phone" class="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-[#00356b]/30" />
+                  </div>
+                </div>
+                <div class="grid md:grid-cols-3 gap-4">
+                  <div>
+                    <label class="text-sm">Price range</label>
+                    <select name="price" class="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2">
+                      <option value="">Select</option>
+                      <option>$600k-$800k</option>
+                      <option>$800k-$1.0M</option>
+                      <option>$1.0M-$1.5M</option>
+                      <option>$1.5M-$2.0M</option>
+                      <option>$2.0M+</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="text-sm">Beds</label>
+                    <select name="beds" class="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2">
+                      <option value="">Any</option>
+                      <option>2+</option>
+                      <option>3+</option>
+                      <option>4+</option>
+                      <option>5+</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="text-sm">Timeframe</label>
+                    <select name="timeframe" class="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2">
+                      <option value="">Select</option>
+                      <option>0-3 months</option>
+                      <option>3-6 months</option>
+                      <option>6-12 months</option>
+                      <option>Just browsing</option>
+                    </select>
+                  </div>
+                </div>
+                <div>
+                  <label class="text-sm">Are you pre‑approved?</label>
+                  <div class="mt-1 flex flex-wrap gap-4 text-sm">
+                    <label class="inline-flex items-center gap-2"><input type="radio" name="preapproved" value="Yes"/> <span>Yes</span></label>
+                    <label class="inline-flex items-center gap-2"><input type="radio" name="preapproved" value="No"/> <span>No</span></label>
+                    <label class="inline-flex items-center gap-2"><input type="radio" name="preapproved" value="Not sure"/> <span>Not sure</span></label>
+                  </div>
+                </div>
+                <div>
+                  <label class="text-sm">Anything else to add?</label>
+                  <textarea name="notes" rows="3" class="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2" placeholder="Schools, yard, suite, parking, etc."></textarea>
+                </div>
+                <label class="text-sm flex items-start gap-2">
+                  <input type="checkbox" required name="consent" class="mt-1" />
+                  <span>I consent to be contacted by Macdonald Realty Ltd. <a class="underline" href="#">Privacy Policy</a>.</span>
+                </label>
+                <button type="submit" class="rounded-xl bg-[#00356b] text-white px-5 py-3 font-medium shadow hover:opacity-95">Send me my list</button>
+                <div class="text-xs text-slate-500 mt-1">Canadian anti‑spam compliant. Unsubscribe anytime.</div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust strip -->
+    <section class="bg-slate-100 border-y border-slate-200">
+      <div class="mx-auto max-w-6xl px-4 py-8 grid sm:grid-cols-3 gap-6 text-sm text-slate-700">
+        <div class="rounded-2xl bg-white p-4 border border-slate-200">Brokerage: <span class="font-medium">Macdonald Realty Ltd.</span></div>
+        <div class="rounded-2xl bg-white p-4 border border-slate-200">Service Areas: South Surrey · White Rock · Cloverdale</div>
+        <div class="rounded-2xl bg-white p-4 border border-slate-200">Hours: 9am–7pm daily</div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="bg-white">
+      <div class="mx-auto max-w-6xl px-4 py-14">
+        <h2 class="font-serif text-3xl">Buyer FAQ</h2>
+        <div class="mt-6 grid md:grid-cols-3 gap-6">
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+            <div class="font-medium">Is this free?</div>
+            <p class="mt-2 text-sm text-slate-600">Yes. We’ll set up a personalized search and alerts at no cost.</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+            <div class="font-medium">Will you spam me?</div>
+            <p class="mt-2 text-sm text-slate-600">No. You’ll get relevant matches only and can unsubscribe anytime.</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+            <div class="font-medium">How soon can I tour a home?</div>
+            <p class="mt-2 text-sm text-slate-600">Often the same day. We’ll coordinate private showings that fit your schedule.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#00356b] text-slate-100">
+      <div class="mx-auto max-w-6xl px-4 py-12 grid md:grid-cols-4 gap-8">
+        <div>
+          <div class="h-9 w-9 rounded-full bg-white text-[#00356b] grid place-items-center font-black">MR</div>
+          <div class="mt-3 text-sm text-slate-200">© <span id="year"></span> Macdonald Realty Ltd.</div>
+        </div>
+        <div>
+          <div class="font-semibold">South Surrey</div>
+          <ul class="mt-3 space-y-2 text-sm text-slate-200/90">
+            <li>Morgan Creek</li>
+            <li>Ocean Park</li>
+            <li>Grandview</li>
+          </ul>
+        </div>
+        <div>
+          <div class="font-semibold">Contact</div>
+          <ul class="mt-3 space-y-2 text-sm text-slate-200/90">
+            <li><a href="mailto:hello@youremail.com" class="hover:underline">hello@youremail.com</a></li>
+            <li><a href="tel:+16045551234" class="hover:underline">(604) 555‑1234</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="font-semibold">Legal</div>
+          <ul class="mt-3 space-y-2 text-sm text-slate-200/90">
+            <li><a href="#" class="hover:underline">Privacy</a></li>
+            <li><a href="#" class="hover:underline">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Handle form submit using Fetch and show thank you
+      document.getElementById('leadForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const data = Object.fromEntries(new FormData(form).entries());
+        try {
+          const endpoint = window.VITE_FORM_ENDPOINT || 'https://httpbin.org/post';
+          await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ...data, page: 'South Surrey Buyer (static)' }),
+          });
+        } catch(e) {
+          console.warn('Submit failed, showing thanks anyway.');
+        }
+        document.getElementById('fields').classList.add('hidden');
+        document.getElementById('thanks').classList.remove('hidden');
+      });
+    </script>
   </body>
 </html>
