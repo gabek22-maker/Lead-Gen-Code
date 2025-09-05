@@ -1,6 +1,7 @@
-# South Surrey Buyer Access • Macdonald Realty Ltd.
+# South Surrey Buyer Access • Macdonald Realty Ltd. (No-plugin build)
 
-A ready-to-deploy React + Vite + Tailwind landing page for South Surrey buyer lead generation.
+This variant removes `@vitejs/plugin-react` to avoid missing-dependency build errors.
+React compiles via Vite's esbuild automatic JSX runtime—no plugin required.
 
 ## Quick start
 
@@ -14,12 +15,8 @@ npm run dev
 ```bash
 npm run build
 ```
-This creates a `dist/` folder suitable for Netlify/Vercel static hosting.
+Output is in `dist/` for Netlify/Vercel.
 
-- **Vercel:** New Project → Import → set Framework to `Vite` → deploy.
-- **Netlify:** Drag the `dist/` folder or connect repo. Build command: `npm run build`, Publish directory: `dist`.
+## Environment variable (optional)
 
-## Form endpoint
-
-The form currently POSTs to `https://httpbin.org/post` for demo.
-Replace the URL in `src/App.jsx` with your webhook/CRM endpoint (e.g., Zapier, Make, Follow Up Boss, HubSpot, Mailchimp).
+Set `VITE_FORM_ENDPOINT` on your host to control the POST URL. Otherwise the demo endpoint in `src/App.jsx` is used.
